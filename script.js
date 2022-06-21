@@ -1,9 +1,26 @@
-const linksSocialMedia = {
-  github: "Gusstavoo",
+let pesquisa = document.querySelector('#procurar');
+let btn = document.querySelector('#btnProcurar');
+
+btn.onclick = clickBtn;
+
+function clickBtn() {
+  linksSocialMedia.github = pesquisa.value;
+  pesquisa.value = '';
+  getGitHubProfileInfos();
+}
+
+pesquisa.addEventListener('keypress', function (e) {
+  if (e.which == 13) {
+    clickBtn();
+  }
+}, false);
+
+
+let linksSocialMedia = {
+  github: "xgusstavo",
   youtube: "channel/UCQozriSh9Hbey0U_Ucm83Vg",
-  facebook: "",
-  instagram: "",
-  twitter: ""
+  linkedin: "in/xgusstavo/",
+  twitter: "xGusstavoo"
 }
 
 function changeSocialMediaLinks() {
@@ -15,9 +32,9 @@ function changeSocialMediaLinks() {
 
 changeSocialMediaLinks()
 
-function getGitHubProfileInfos(){
+function getGitHubProfileInfos() {
   const url = `https://api.github.com/users/${linksSocialMedia.github}`
-  
+
   fetch(url)
     .then(response => response.json())
     .then(data => {
